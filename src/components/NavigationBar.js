@@ -11,21 +11,20 @@ export default function NavigationBar() {
   const [clickedIndex, setClickedIndex] = useState(0);
 
   function handleClick(e, index) {
-    e.preventDefault();
     setClickedIndex(index);
   }
 
   return (
-    <nav>
-      <ul
-        className={`grid grid-cols-${topics.length} justify-items-stretch text-lg bg-light-text dark:bg-dark-text`}
-      >
+    <nav
+      className={`text-sm text-light-text dark:text-dark-text bg-dark-nav shadow-md`}
+    >
+      <ul>
         {topics.map((topic, index) => {
           return (
             <NavigationItem
               key={index}
               text={topic}
-              href=""
+              href={topic.replace(/\s/g, '-')}
               clicked={clickedIndex === index}
               handleClick={(e) => handleClick(e, index)}
             />
@@ -35,3 +34,4 @@ export default function NavigationBar() {
     </nav>
   );
 }
+// text-light-text bg-light-bg dark:text-dark-text dark:bg-dark-bg

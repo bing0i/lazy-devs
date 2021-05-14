@@ -1,22 +1,20 @@
+import { Link } from 'react-router-dom';
+
 export default function NavigationItem(props) {
   const { text, href, clicked, handleClick } = props;
 
   return (
-    <li
-      className={`
-      uppercase text-center py-2 mx-12 rounded-t-xl cursor-pointer
-      hover:text-light-text hover:bg-light-bg dark:hover:text-dark-text dark:hover:bg-dark-bg 
-      ${
-        clicked
-          ? 'text-light-text bg-light-bg dark:text-dark-text dark:bg-dark-bg'
-          : 'text-light-bg bg-light-text dark:text-dark-bg dark:bg-dark-text'
-      }
-      `}
-      onClick={handleClick}
-    >
-      <a href={href}>{text}</a>
+    <li className="inline-block">
+      <Link
+        to={href}
+        onClick={handleClick}
+        className={`inline-block uppercase py-4 mx-2
+          dark:hover:text-dark-hover-text
+          ${clicked ? 'text-accent' : 'text-white dark:text-dark-text'}
+        `}
+      >
+        {text}
+      </Link>
     </li>
   );
 }
-
-// text-light-bg bg-light-text dark:text-dark-bg dark:bg-dark-text
