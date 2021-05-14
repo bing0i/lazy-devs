@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Card from './components/Card';
+import Routes from './components/Routes';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Card />
+    <Routes />
   </React.StrictMode>,
   document.getElementById('root')
 );
