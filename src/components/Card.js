@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Card(props) {
   const { title, detail, imagePath, imageAlt } = props;
   return (
@@ -11,8 +13,15 @@ export default function Card(props) {
         src={imagePath}
         alt={imageAlt}
       ></img>
-      <p className="col-span-3 text-lg self-end">{title}</p>
-      <p className="col-span-3 text-sm self-start">{detail}</p>
+      <Link
+        to={('/' + title.toLowerCase()).replace(/\s/g, '-')}
+        className="col-span-3 text-lg self-end hover:text-accent"
+      >
+        {title}
+      </Link>
+      <p className="col-span-3 text-sm self-start text-dark-hover-text">
+        {detail}
+      </p>
     </section>
   );
 }

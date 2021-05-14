@@ -9,7 +9,7 @@ export default function NavigationItem(props) {
         to={href}
         onClick={handleClick}
         className={`inline-block uppercase py-4 mx-2
-          dark:hover:text-dark-hover-text
+          hover:text-dark-hover-text dark:hover:text-dark-hover-text
           ${clicked ? 'text-accent' : 'text-white dark:text-dark-text'}
         `}
       >

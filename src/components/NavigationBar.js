@@ -34,4 +34,3 @@ export default function NavigationBar() {
     </nav>
   );
 }
-// text-light-text bg-light-bg dark:text-dark-text dark:bg-dark-bg
