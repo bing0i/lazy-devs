@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import NavigationBar from './components/NavigationBar';
+import Card from './components/Card';
 
 ReactDOM.render(
   <React.StrictMode>
-    <NavigationBar />
+    <Card />
   </React.StrictMode>,
   document.getElementById('root')
 );
