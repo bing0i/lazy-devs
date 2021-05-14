@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+#root {
+  --light-text: #000;
+  --light-bg: #fff; 
+  --dark-text: #fff;
+  --dark-bg: #0D1117;
+  --accent: #00a063;
+}
