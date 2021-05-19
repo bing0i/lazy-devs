@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import NavigationItem from './NavigationItem';
 
-export default function NavigationBar() {
-  const topics = [
-    'home',
-    'data structures',
-    'sort algorithms',
-    'search algorithms',
-  ];
+export default function NavigationBar(props) {
+  const { categories } = props;
   const [clickedIndex, setClickedIndex] = useState(0);
 
   function handleClick(e, index) {
@@ -19,12 +14,12 @@ export default function NavigationBar() {
       className={`text-sm text-light-text dark:text-dark-text bg-dark-nav shadow-md`}
     >
       <ul>
-        {topics.map((topic, index) => {
+        {categories.map((category, index) => {
           return (
             <NavigationItem
               key={index}
-              text={topic}
-              href={topic.replace(/\s/g, '-')}
+              text={category}
+              href={category.replace(/\s/g, '-')}
               clicked={clickedIndex === index}
               handleClick={(e) => handleClick(e, index)}
             />
