@@ -6,7 +6,7 @@ export default function NavigationItem(props) {
   return (
     <li className="inline-block">
       <Link
-        to={href}
+        to={'/' + href}
         onClick={handleClick}
         className={`inline-block uppercase py-4 mx-2
           hover:text-dark-hover-text dark:hover:text-dark-hover-text
