@@ -1,4 +1,4 @@
-import PostPreview from './PostPreview';
+import Post from './Post';
 import PostForm from './PostForm';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -6,7 +6,7 @@ import { useState } from 'react';
 export default function AddNewPostPage() {
   const categories = useSelector((state) => state.categories);
   const [isInEditMode, setIsInEditMode] = useState(true);
-  const [editingPost, setEditingPost] = useState({
+  const [post, setPost] = useState({
     category: categories[0].toLowerCase().replace(/\s/g, ''),
     title: '',
     description: '',
@@ -26,13 +26,9 @@ export default function AddNewPostPage() {
       />
 
       {isInEditMode ? (
-        <PostForm
-          categories={categories}
-          editingPost={editingPost}
-          setEditingPost={setEditingPost}
-        />
+        <PostForm categories={categories} post={post} setPost={setPost} />
       ) : (
-        <PostPreview editingPost={editingPost} />
+        <Post category={post.category} post={post} />
       )}
     </div>
   );

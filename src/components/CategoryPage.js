@@ -3,12 +3,9 @@ import Card from './Card';
 
 export default function TopicPage(props) {
   const { category } = props;
-  console.log('hello world');
-  console.log(category);
   const posts = useSelector(
     (state) => state.posts.categories[category.toLowerCase().replace(/\s/g, '')]
   );
-  console.log(posts);
 
   return (
     <section
@@ -20,7 +17,8 @@ export default function TopicPage(props) {
           <Card
             key={index}
             title={post.title}
-            detail={post.description}
+            description={post.description}
+            category={category}
             imagePath={''}
             imageAlt={''}
           />

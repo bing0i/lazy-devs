@@ -6,7 +6,6 @@ export default function PostPreview(props) {
 
   return (
     <section>
-      <p>wqehgkjwqgewqgejgqkjew</p>
       <p>{editingPost.category}</p>
       <p>{editingPost.title}</p>
       <p>{editingPost.description}</p>
