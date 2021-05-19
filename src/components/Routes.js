@@ -1,8 +1,8 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import CategoryPage from './CategoryPage';
-import PostForm from './PostForm';
 import { useSelector } from 'react-redux';
+import AddNewPostPage from './AddNewPostPage';
 
 export default function Routes() {
   const categories = useSelector((state) => state.categories);
@@ -10,9 +10,8 @@ export default function Routes() {
 
   return (
     <BrowserRouter>
-      <NavigationBar categories={['home', ...categories, 'create a post']} />
+      <NavigationBar categories={['home', ...categories, 'post']} />
 
-      <Route exact path="/" render={() => <p>Home page</p>} />
       <Switch>
         {paths.map((path, index) => {
           return (
@@ -25,11 +24,7 @@ export default function Routes() {
           );
         })}
 
-        <Route
-          exact
-          path="/create-a-post"
-          render={() => <PostForm categories={categories} />}
-        />
+        <Route exact path="/post" render={() => <AddNewPostPage />} />
       </Switch>
     </BrowserRouter>
   );

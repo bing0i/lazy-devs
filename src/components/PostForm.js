@@ -3,14 +3,12 @@ import { useDispatch } from 'react-redux';
 import { addNewPost } from '../redux/slices/postsSlice';
 
 export default function PostForm(props) {
-  const { categories } = props;
+  const { categories, editingPost, setEditingPost } = props;
 
-  const [category, setCategory] = useState(
-    categories[0].toLowerCase().replace(/\s/g, '')
-  );
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [content, setContent] = useState('');
+  const [category, setCategory] = useState(editingPost.category);
+  const [title, setTitle] = useState(editingPost.title);
+  const [description, setDescription] = useState(editingPost.description);
+  const [content, setContent] = useState(editingPost.content);
 
   const dispatch = useDispatch();
 
@@ -53,6 +51,7 @@ export default function PostForm(props) {
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
+            setEditingPost({ ...editingPost, title });
           }}
         />
 
@@ -64,6 +63,7 @@ export default function PostForm(props) {
           value={description}
           onChange={(e) => {
             setDescription(e.target.value);
+            setEditingPost({ ...editingPost, description });
           }}
         />
 
@@ -74,6 +74,7 @@ export default function PostForm(props) {
           value={content}
           onChange={(e) => {
             setContent(e.target.value);
+            setEditingPost({ ...editingPost, content });
           }}
         ></textarea>
 
