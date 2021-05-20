@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function AddNewPostPage() {
   const categories = useSelector((state) => state.categories);
-  const [isInEditMode, setIsInEditMode] = useState(true);
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [post, setPost] = useState({
     category: categories[0].toLowerCase().replace(/\s/g, ''),
     title: '',
@@ -13,23 +13,38 @@ export default function AddNewPostPage() {
     content: '',
   });
   return (
-    <div>
-      <label htmlFor="editMode">Edit Mode</label>
-      <input
-        type="checkbox"
-        name="editMode"
-        id="editMode"
-        defaultChecked={isInEditMode}
-        onChange={() => {
-          setIsInEditMode(!isInEditMode);
-        }}
-      />
+    <div className="grid grid-cols-5">
+      <div></div>
+      <section className="col-span-3">
+        <div className="mx-3 my-5">
+          <label htmlFor="toggle" className="text-SM font-bold mr-5">
+            PREVIEW MODE
+          </label>
+          <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+            <input
+              className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+              type="checkbox"
+              name="editMode"
+              id="editMode"
+              defaultChecked={isPreviewMode}
+              onChange={() => {
+                setIsPreviewMode(!isPreviewMode);
+              }}
+            />
+            <label
+              htmlFor="editMode"
+              className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
+            ></label>
+          </div>
+        </div>
 
-      {isInEditMode ? (
-        <PostForm categories={categories} post={post} setPost={setPost} />
-      ) : (
-        <Post category={post.category} post={post} />
-      )}
+        {isPreviewMode ? (
+          <Post category={post.category} post={post} />
+        ) : (
+          <PostForm categories={categories} post={post} setPost={setPost} />
+        )}
+      </section>
+      <div></div>
     </div>
   );
 }

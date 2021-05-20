@@ -7,9 +7,10 @@ export default function Post(props) {
   return (
     <section>
       <p>{category}</p>
-      <p>{post.title}</p>
+      <h1>{post.title}</h1>
       <p>{post.description}</p>
       <div
+        className="markdown"
         dangerouslySetInnerHTML={{
           __html: mdConverter.makeHtml(post.content),
         }}

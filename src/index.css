@@ -2,12 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 #root {
-  --light-text: #24292E;
+  --light-text: #24292e;
   --light-bg: #fff;
-  --dark-text: #F0F6FC;
-  --dark-bg: #0D1117;
-  --accent: #EF4444;
-  --dark-hover-text: #B0B5BB;
-  --dark-nav: #161B22;
-  --dark-card: #161B22;
+  --dark-text: #f0f6fc;
+  --dark-bg: #0d1117;
+  --accent: #93c5fd;
+  --dark-hover-text: #b0b5bb;
+  --dark-nav: #161b22;
+  --dark-card: #161b22;
+}
+
+.toggle-checkbox:checked {
+  @apply right-0;
+  @apply border-green-400;
+  right: 0;
+  border-color: #93c5fd;
+}
+.toggle-checkbox:checked + .toggle-label {
+  @apply bg-green-400;
+  background-color: #93c5fd;
+}
+
+.markdown h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.markdown h2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.markdown h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.markdown p {
+  font-size: 16px;
+}
+
+.markdown ol {
+  list-style-type: circle;
 }

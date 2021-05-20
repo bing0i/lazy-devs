@@ -23,15 +23,22 @@ export default function PostForm(props) {
   }
 
   return (
-    <div className="grid grid-cols-3">
-      <section></section>
-      <form onSubmit={handleSubmission} className="grid grid-auto-row">
-        <label htmlFor="categories">Choose a category</label>
+    <form
+      onSubmit={handleSubmission}
+      className="grid grid-auto-row gap-y-8 text-base"
+    >
+      <label htmlFor="categories">
+        <span className="ml-3 font-bold text-sm">Choose a category</span>
         <select
+          className={`w-full rounded-xl focus:outline-none focus:ring 
+          focus:ring-accent focus:border-accent px-3 py-2 shadow-md`}
+          spellCheck="false"
           name="categories"
           id="categories"
+          defaultValue={category}
           onChange={(e) => {
             setCategory(e.target.value.toLowerCase().replace(/\s/g, ''));
+            setPost({ ...post, category: e.target.value });
           }}
         >
           {categories.map((item, index) => {
@@ -42,45 +49,64 @@ export default function PostForm(props) {
             );
           })}
         </select>
+      </label>
 
-        <label htmlFor="title">Title</label>
+      <label htmlFor="title">
+        <span className="ml-3 font-bold text-sm">Title</span>
         <input
+          className={`w-full rounded-xl focus:outline-none focus:ring 
+          focus:ring-accent focus:border-accent px-3 py-2 shadow-md`}
+          spellCheck="false"
           type="text"
           name="title"
           id="title"
           value={title}
-          onChange={(e) => {
+          onInput={(e) => {
             setTitle(e.target.value);
-            setPost({ ...post, title });
+            setPost({ ...post, title: e.target.value });
           }}
         />
+      </label>
 
-        <label htmlFor="description">Description</label>
+      <label htmlFor="description">
+        <span className="ml-3 font-bold text-sm">Description</span>
         <input
+          className={`w-full rounded-xl focus:outline-none focus:ring 
+          focus:ring-accent focus:border-accent px-3 py-2 shadow-md`}
+          spellCheck="false"
           type="text"
           name="description"
           id="description"
           value={description}
-          onChange={(e) => {
+          onInput={(e) => {
             setDescription(e.target.value);
-            setPost({ ...post, description });
+            setPost({ ...post, description: e.target.value });
           }}
         />
+      </label>
 
-        <label htmlFor="content">Content</label>
+      <label htmlFor="content">
+        <span className="ml-3 font-bold text-sm">Content</span>
         <textarea
+          className={`w-full h-screen rounded-xl focus:outline-none focus:ring 
+          focus:ring-accent focus:border-accent px-3 py-2 shadow-md resize-none`}
+          spellCheck="false"
           name="content"
           id="content"
           value={content}
-          onChange={(e) => {
+          onInput={(e) => {
             setContent(e.target.value);
-            setPost({ ...post, content });
+            setPost({ ...post, content: e.target.value });
           }}
         ></textarea>
+      </label>
 
-        <button type="submit">Create a new post</button>
-      </form>
-      <section></section>
-    </div>
+      <button
+        type="submit"
+        className="font-bold bg-accent rounded-xl p-3 shadow-md mb-8"
+      >
+        CREATE A NEW POST
+      </button>
+    </form>
   );
 }
