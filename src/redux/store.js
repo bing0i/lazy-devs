@@ -10,11 +10,9 @@ const reducer = {
 const preloadedState = {
   categories: ['data structures', 'sorting algorithms', 'searching algorithms'],
   posts: {
-    categories: {
-      datastructures: [],
-      sortingalgorithms: [],
-      searchingalgorithms: [],
-    },
+    datastructures: [],
+    sortingalgorithms: [],
+    searchingalgorithms: [],
   },
 };
 

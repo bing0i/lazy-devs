@@ -105,7 +105,7 @@ export default function PostForm(props) {
 
         <button
           type="submit"
-          className="p-3 mb-8 font-bold shadow-md bg-accent rounded-xl"
+          className="p-3 mb-8 font-bold shadow-md bg-accent rounded-xl focus:outline-none focus:ring focus:ring-gray-600 focus:border-gray-600"
         >
           CREATE A NEW POST
         </button>

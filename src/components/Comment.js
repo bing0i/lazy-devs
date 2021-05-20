@@ -2,17 +2,15 @@ export default function Comment(props) {
   const { username, content, avataPath, imageAlt } = props;
   return (
     <section
-      className="grid grid-cols-5 grid-rows-2  rounded-xl shadow-md my-5 w-6/12 
-      text-light-text bg-light-bg dark:text-dark-text dark:bg-dark-card
-      w-48 h-48"
+      className="grid w-48 h-48 grid-cols-5 grid-rows-2 my-5 shadow-md rounded-xl text-light-text bg-light-bg dark:text-dark-text dark:bg-dark-card"
     >
       <img
-        className="row-span-2 col-span-2 self-center"
+        className="self-center col-span-2 row-span-2"
         src={avataPath}
         alt={imageAlt}
       ></img>
-      <p className="col-span-3 text-lg self-end">{username}</p>
-      <p className="col-span-3 text-sm self-start">{content}</p>
+      <p className="self-end col-span-3 text-lg">{username}</p>
+      <p className="self-start col-span-3 text-sm">{content}</p>
     </section>
   );
 }

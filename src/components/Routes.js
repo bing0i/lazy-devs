@@ -8,7 +8,7 @@ import Post from './Post';
 export default function Routes() {
   const categories = useSelector((state) => state.categories);
   const paths = categories.map((category) => category.replace(/\s/g, '-'));
-  const posts = useSelector((state) => state.posts.categories);
+  const posts = useSelector((state) => state.posts);
 
   return (
     <BrowserRouter>
