@@ -30,7 +30,6 @@ export default function Routes() {
 
         {categories.map((category, i) => {
           return posts[category.replace(/\s/g, '')].map((post, index) => {
-            console.log(post);
             return (
               <Route
                 key={index}
