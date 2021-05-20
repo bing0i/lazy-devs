@@ -1,6 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import postsReducer from './slices/postsSlice';
 import categoriesReducer from './slices/categoriesSlice';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from '../saga/posts';
 
 const reducer = {
   posts: postsReducer,
@@ -16,7 +18,17 @@ const preloadedState = {
   },
 };
 
-export default configureStore({
+const sagaMiddleware = createSagaMiddleware();
+
+const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];
+
+const store = configureStore({
   reducer,
   preloadedState,
+  middleware,
 });
+
+sagaMiddleware.run(rootSaga);
+// const action = (type) => store.dispatch({ type });
+
+export default store;

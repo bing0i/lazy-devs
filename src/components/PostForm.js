@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewPost } from '../redux/slices/postsSlice';
 
 export default function PostForm(props) {
   const { categories, post, setPost } = props;
@@ -15,7 +14,7 @@ export default function PostForm(props) {
   function handleSubmission(e) {
     e.preventDefault();
 
-    dispatch(addNewPost({ category, title, description, content }));
+    dispatch({ type: 'postPost', payload: post });
 
     setTitle('');
     setDescription('');
