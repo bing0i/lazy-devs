@@ -1,6 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import { addNewPost, fetchAllPosts } from '../redux/slices/postsSlice';
+import { reportError } from '../redux/slices/errorsSlice';
 
 function apiPostPost(post) {
   return axios.request({
@@ -11,9 +12,12 @@ function apiPostPost(post) {
 }
 
 function* postPost(action) {
-  // TODO: handle error
-  const post = yield call(apiPostPost, action.payload);
-  yield put(addNewPost(post.data));
+  try {
+    const post = yield call(apiPostPost, action.payload);
+    yield put(addNewPost(post.data));
+  } catch (e) {
+    yield put(reportError({ message: e.message }));
+  }
 }
 
 function* watchPostPost() {
@@ -28,9 +32,12 @@ function apiGetAllPosts() {
 }
 
 function* getAllPosts(action) {
-  // TODO: handle error
-  const posts = yield call(apiGetAllPosts);
-  yield put(fetchAllPosts(posts.data));
+  try {
+    const posts = yield call(apiGetAllPosts);
+    yield put(fetchAllPosts(posts.data));
+  } catch (e) {
+    yield put(reportError({ message: e.message }));
+  }
 }
 
 function* watchGetAllPosts() {

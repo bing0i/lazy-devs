@@ -4,6 +4,7 @@ import {
   // addNewCategory,
   fetchAllCategories,
 } from '../redux/slices/categoriesSlice';
+import { reportError } from '../redux/slices/errorsSlice';
 
 function apiGetAllCategories() {
   return axios.request({
@@ -13,9 +14,12 @@ function apiGetAllCategories() {
 }
 
 function* getAllCategories(action) {
-  // TODO: handle error
-  const categories = yield call(apiGetAllCategories);
-  yield put(fetchAllCategories(categories.data));
+  try {
+    const categories = yield call(apiGetAllCategories);
+    yield put(fetchAllCategories(categories.data));
+  } catch (e) {
+    yield put(reportError({ message: e.message }));
+  }
 }
 
 function* watchGetAllCategories() {

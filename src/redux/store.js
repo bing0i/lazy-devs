@@ -1,12 +1,16 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+
 import postsReducer from './slices/postsSlice';
 import categoriesReducer from './slices/categoriesSlice';
+import errorsReducer from './slices/errorsSlice';
+
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/rootSaga';
 
 const reducer = {
   posts: postsReducer,
   categories: categoriesReducer,
+  errors: errorsReducer,
 };
 
 const preloadedState = {
