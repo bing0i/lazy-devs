@@ -18,8 +18,8 @@ export default function NavigationBar(props) {
           return (
             <NavigationItem
               key={index}
-              text={category}
-              href={category.replace(/\s/g, '-')}
+              text={category.replace('-', ' ')}
+              href={category}
               clicked={clickedIndex === index}
               handleClick={(e) => handleClick(e, index)}
             />

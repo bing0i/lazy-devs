@@ -16,7 +16,6 @@ function* postPost(action) {
 }
 
 function* watchPostPost() {
-  console.log('watchPostPost');
   yield takeEvery('postPost', postPost);
 }
 

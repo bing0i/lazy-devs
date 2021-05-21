@@ -38,14 +38,14 @@ export default function PostForm(props) {
             id="categories"
             defaultValue={category}
             onChange={(e) => {
-              setCategory(e.target.value.toLowerCase().replace(/\s/g, ''));
+              setCategory(e.target.value);
               setPost({ ...post, category: e.target.value });
             }}
           >
             {categories.map((item, index) => {
               return (
                 <option key={index} value={item}>
-                  {item.toUpperCase()}
+                  {item.toUpperCase().replace('-', ' ')}
                 </option>
               );
             })}
