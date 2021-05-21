@@ -27,5 +27,6 @@ const store = configureStore({
 sagaMiddleware.run(rootSaga);
 
 store.dispatch({ type: 'getAllCategories' });
+store.dispatch({ type: 'getAllPosts' });
 
 export default store;

@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
-import { addNewPost } from '../redux/slices/postsSlice';
+import { addNewPost, fetchAllPosts } from '../redux/slices/postsSlice';
 
 function apiPostPost(post) {
   return axios.request({
@@ -20,6 +20,23 @@ function* watchPostPost() {
   yield takeEvery('postPost', postPost);
 }
 
-const postsSagas = [watchPostPost];
+function apiGetAllPosts() {
+  return axios.request({
+    method: 'get',
+    url: 'http://localhost:5000/api/posts',
+  });
+}
+
+function* getAllPosts(action) {
+  // TODO: handle error
+  const posts = yield call(apiGetAllPosts);
+  yield put(fetchAllPosts(posts.data));
+}
+
+function* watchGetAllPosts() {
+  yield takeEvery('getAllPosts', getAllPosts);
+}
+
+const postsSagas = [watchPostPost, watchGetAllPosts];
 
 export default postsSagas;

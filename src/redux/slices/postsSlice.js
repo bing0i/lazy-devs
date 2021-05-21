@@ -7,9 +7,12 @@ export const postsReducer = createSlice({
     addNewPost: (state, action) => {
       state.push(action.payload);
     },
+    fetchAllPosts: (state, action) => {
+      return [...action.payload];
+    },
   },
 });
 
-export const { addNewPost } = postsReducer.actions;
+export const { addNewPost, fetchAllPosts } = postsReducer.actions;
 
 export default postsReducer.reducer;
