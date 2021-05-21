@@ -11,18 +11,24 @@ export default function Routes() {
 
   return (
     <BrowserRouter>
-      <NavigationBar categories={['home', ...categories, 'post']} />
+      <NavigationBar
+        categories={[
+          'home',
+          ...categories.map((category) => category.title),
+          'post',
+        ]}
+      />
 
       <Switch>
         <Route exact path="/post" render={() => <AddNewPostPage />} />
 
-        {categories.map((category, index) => {
+        {categories.map((category) => {
           return (
             <Route
-              key={index}
+              key={category._id}
               exact
-              path={'/' + category}
-              render={() => <CategoryPage category={category} />}
+              path={'/' + category.title}
+              render={() => <CategoryPage category={category.title} />}
             />
           );
         })}

@@ -1,13 +1,11 @@
 import Post from './Post';
 import PostForm from './PostForm';
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
 export default function AddNewPostPage() {
-  const categories = useSelector((state) => state.categories);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [post, setPost] = useState({
-    category: categories[0].toLowerCase().replace(/\s/g, ''),
+    category: '',
     title: '',
     description: '',
     content: '',
@@ -39,7 +37,7 @@ export default function AddNewPostPage() {
       {isPreviewMode ? (
         <Post category={post.category} post={post} />
       ) : (
-        <PostForm categories={categories} post={post} setPost={setPost} />
+        <PostForm post={post} setPost={setPost} />
       )}
     </section>
   );

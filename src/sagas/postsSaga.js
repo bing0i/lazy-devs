@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import { addNewPost } from '../redux/slices/postsSlice';
 
@@ -11,6 +11,7 @@ function apiPostPost(post) {
 }
 
 function* postPost(action) {
+  // TODO: handle error
   const post = yield call(apiPostPost, action.payload);
   yield put(addNewPost(post.data));
 }
@@ -19,6 +20,6 @@ function* watchPostPost() {
   yield takeEvery('postPost', postPost);
 }
 
-export default function* rootSaga() {
-  yield all([watchPostPost()]);
-}
+const postsSagas = [watchPostPost];
+
+export default postsSagas;

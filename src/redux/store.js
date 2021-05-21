@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import postsReducer from './slices/postsSlice';
 import categoriesReducer from './slices/categoriesSlice';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from '../sagas/postsSaga';
+import rootSaga from '../sagas/rootSaga';
 
 const reducer = {
   posts: postsReducer,
@@ -10,7 +10,7 @@ const reducer = {
 };
 
 const preloadedState = {
-  categories: ['data-structures', 'sorting-algorithms', 'searching-algorithms'],
+  categories: [],
   posts: [],
 };
 
@@ -25,6 +25,7 @@ const store = configureStore({
 });
 
 sagaMiddleware.run(rootSaga);
-// const action = (type) => store.dispatch({ type });
+
+store.dispatch({ type: 'getAllCategories' });
 
 export default store;

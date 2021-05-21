@@ -1,24 +1,26 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function PostForm(props) {
-  const { categories, post, setPost } = props;
-
-  const [category, setCategory] = useState(post.category);
-  const [title, setTitle] = useState(post.title);
-  const [description, setDescription] = useState(post.description);
-  const [content, setContent] = useState(post.content);
-
+  const { post, setPost } = props;
+  const categories = useSelector((state) => state.categories);
   const dispatch = useDispatch();
 
   function handleSubmission(e) {
     e.preventDefault();
 
-    dispatch({ type: 'postPost', payload: post });
+    post.category !== ''
+      ? dispatch({ type: 'postPost', payload: post })
+      : dispatch({
+          type: 'postPost',
+          payload: { ...post, category: categories[0].title },
+        });
 
-    setTitle('');
-    setDescription('');
-    setContent('');
+    setPost({
+      category: '',
+      title: '',
+      description: '',
+      content: '',
+    });
   }
 
   return (
@@ -36,16 +38,15 @@ export default function PostForm(props) {
             spellCheck="false"
             name="categories"
             id="categories"
-            defaultValue={category}
+            defaultValue={post.category}
             onChange={(e) => {
-              setCategory(e.target.value);
               setPost({ ...post, category: e.target.value });
             }}
           >
-            {categories.map((item, index) => {
+            {categories.map((item) => {
               return (
-                <option key={index} value={item}>
-                  {item.toUpperCase().replace('-', ' ')}
+                <option key={item._id} value={item.title}>
+                  {item.title.toUpperCase().replace('-', ' ')}
                 </option>
               );
             })}
@@ -61,9 +62,8 @@ export default function PostForm(props) {
             type="text"
             name="title"
             id="title"
-            value={title}
+            value={post.title}
             onInput={(e) => {
-              setTitle(e.target.value);
               setPost({ ...post, title: e.target.value });
             }}
           />
@@ -78,9 +78,8 @@ export default function PostForm(props) {
             type="text"
             name="description"
             id="description"
-            value={description}
+            value={post.description}
             onInput={(e) => {
-              setDescription(e.target.value);
               setPost({ ...post, description: e.target.value });
             }}
           />
@@ -94,9 +93,8 @@ export default function PostForm(props) {
             spellCheck="false"
             name="content"
             id="content"
-            value={content}
+            value={post.content}
             onInput={(e) => {
-              setContent(e.target.value);
               setPost({ ...post, content: e.target.value });
             }}
           ></textarea>

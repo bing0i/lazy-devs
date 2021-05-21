@@ -5,11 +5,14 @@ export const categoriesReducer = createSlice({
   initialState: [],
   reducers: {
     addNewCategory: (state, action) => {
-      state.push(action.payload.category);
+      state.push(action.payload);
+    },
+    fetchAllCategories: (state, action) => {
+      return [...action.payload];
     },
   },
 });
 
-export const { addNewCategory } = categoriesReducer.actions;
+export const { addNewCategory, fetchAllCategories } = categoriesReducer.actions;
 
 export default categoriesReducer.reducer;
