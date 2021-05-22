@@ -4,7 +4,7 @@ export default function Card(props) {
   const { id, title, description, category } = props;
   return (
     <div
-      className={`gap-4 grid w-96 shadow-lg p-9 text-justify 
+      className={`rounded-xl gap-4 grid w-96 shadow-lg p-9 text-justify 
       transition duration-500 ease-in-out
       hover:bg-accent transform hover:-translate-y-1 hover:scale-110`}
     >

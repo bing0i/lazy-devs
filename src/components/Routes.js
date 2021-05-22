@@ -6,6 +6,7 @@ import AddNewPostPage from './AddNewPostPage';
 import Post from './Post';
 import ErrorPage from './ErrorPage';
 import LoginPage from './LoginPage';
+import Homepage from './Homepage';
 
 export default function Routes() {
   const categories = useSelector((state) => state.categories);
@@ -36,6 +37,8 @@ export default function Routes() {
             )}
           />
         )}
+
+        <Route exact path="/home" component={Homepage} />
 
         <Route exact path="/login" render={() => <LoginPage />} />
 
