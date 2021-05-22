@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 #root {
-  --light-text: #1F2937; /* gray-800 */
+  --light-text: #1F2937;
+  /* gray-800 */
   --light-bg: #fff;
   --dark-text: #f0f6fc;
   --dark-bg: #0d1117;
-  --accent: #C7D2FE; /* indigo 200 */
-  --hover-accent: #4F46E5; /* indigo 600 */
+  --accent: #C7D2FE;
+  /* indigo 200 */
+  --hover-accent: #4F46E5;
+  /* indigo 600 */
   --dark-hover-text: #b0b5bb;
   --dark-nav: #161b22;
   --dark-card: #161b22;
@@ -18,11 +21,11 @@
     @apply right-0;
     @apply border-blue-400;
     right: 0;
-    border-color: #93c5fd;
+    border-color: #4F46E5;
   }
   .toggle-checkbox:checked+.toggle-label {
     @apply bg-blue-400;
-    background-color: #93c5fd;
+    background-color: #4F46E5;
   }
   .markdown h1 {
     @apply text-3xl;

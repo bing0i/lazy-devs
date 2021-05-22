@@ -4,7 +4,7 @@ export default function Card(props) {
   const { id, title, description, category } = props;
   return (
     <div
-      className={`rounded-xl gap-4 grid w-96 shadow-lg p-9 text-justify 
+      className={`rounded-xl gap-4 grid w-96 shadow-md p-9 text-justify 
       transition duration-500 ease-in-out
       hover:bg-accent transform hover:-translate-y-1 hover:scale-110`}
     >
@@ -15,7 +15,7 @@ export default function Card(props) {
         {title}
       </Link>
       <p className="self-start text-sm">{description}</p>
-      <p className="justify-self-end self-end text-sm text-gray-500">
+      <p className="self-end text-sm text-gray-500 justify-self-end">
         {'01/01/2021'}
       </p>
     </div>

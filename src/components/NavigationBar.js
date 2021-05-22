@@ -10,9 +10,7 @@ export default function NavigationBar(props) {
   }
 
   return (
-    <nav
-      className={`text-sm text-light-text dark:text-dark-text bg-dark-nav shadow-md`}
-    >
+    <nav className="shadow-md px-9 bg-accent">
       <ul>
         {categories.map((category, index) => {
           return (

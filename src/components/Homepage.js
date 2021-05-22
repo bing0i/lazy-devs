@@ -11,7 +11,7 @@ export default function Homepage() {
         {categories.map((category) => {
           return (
             <section
-              className={`shadow-lg p-9 rounded-xl
+              className={`shadow-md p-9 rounded-xl
               transition duration-500 ease-in-out
               hover:bg-accent transform hover:-translate-y-1 hover:scale-110
             `}

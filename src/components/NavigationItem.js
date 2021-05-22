@@ -8,9 +8,9 @@ export default function NavigationItem(props) {
       <Link
         to={'/' + href}
         onClick={handleClick}
-        className={`inline-block uppercase py-4 mx-2
-          hover:text-dark-hover-text dark:hover:text-dark-hover-text
-          ${clicked ? 'text-accent' : 'text-white dark:text-dark-text'}
+        className={`text-sm font-bold inline-block uppercase py-4 mx-3
+          hover:text-light-text
+          ${clicked ? 'text-hover-accent' : 'text-gray-500'}
         `}
       >
         {text}

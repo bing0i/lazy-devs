@@ -28,10 +28,10 @@ export default function PostForm(props) {
       <div></div>
       <form
         onSubmit={handleSubmission}
-        className="grid col-span-3 text-base grid-auto-row gap-y-8"
+        className="grid col-span-3 text-base text-light-text grid-auto-row gap-y-8"
       >
         <label htmlFor="categories">
-          <span className="ml-3 text-sm font-bold">Choose a category</span>
+          <span className="ml-3 text-sm font-bold">CATEGORY</span>
           <select
             className={`w-full rounded-xl focus:outline-none focus:ring 
           focus:ring-accent focus:border-accent px-3 py-2 shadow-md`}
@@ -54,7 +54,7 @@ export default function PostForm(props) {
         </label>
 
         <label htmlFor="title">
-          <span className="ml-3 text-sm font-bold">Title</span>
+          <span className="ml-3 text-sm font-bold">TITLE</span>
           <input
             className={`w-full rounded-xl focus:outline-none focus:ring 
           focus:ring-accent focus:border-accent px-3 py-2 shadow-md`}
@@ -70,7 +70,7 @@ export default function PostForm(props) {
         </label>
 
         <label htmlFor="description">
-          <span className="ml-3 text-sm font-bold">Description</span>
+          <span className="ml-3 text-sm font-bold">DESCRIPTION</span>
           <input
             className={`w-full rounded-xl focus:outline-none focus:ring 
           focus:ring-accent focus:border-accent px-3 py-2 shadow-md`}
@@ -86,7 +86,7 @@ export default function PostForm(props) {
         </label>
 
         <label htmlFor="content">
-          <span className="ml-3 text-sm font-bold">Content</span>
+          <span className="ml-3 text-sm font-bold">CONTENT</span>
           <textarea
             className={`w-full h-screen rounded-xl focus:outline-none focus:ring 
           focus:ring-accent focus:border-accent px-3 py-2 shadow-md resize-none`}
@@ -102,7 +102,7 @@ export default function PostForm(props) {
 
         <button
           type="submit"
-          className="p-3 mb-8 font-bold shadow-md bg-accent rounded-xl focus:outline-none focus:ring focus:ring-gray-600 focus:border-gray-600"
+          className="p-3 mb-8 font-bold shadow-md bg-accent rounded-xl focus:outline-none focus:ring focus:ring-light-text focus:border-light-text hover:bg-hover-accent hover:text-white"
         >
           CREATE A NEW POST
         </button>
