@@ -7,9 +7,8 @@ export default function CategoryPage(props) {
   const categoryPosts = posts.filter((post) => post.category === category);
 
   return (
-    <div className="grid grid-cols-5 bg-light-bg dark:bg-dark-bg">
-      <div></div>
-      <section className="grid grid-flow-row col-span-3 gap-3 my-8 justify-self-stretch">
+    <div className="">
+      <section className="grid grid-flow-col justify-items-center my-9 gap-9">
         {categoryPosts.map((post) => {
           return (
             <Card
@@ -24,7 +23,6 @@ export default function CategoryPage(props) {
           );
         })}
       </section>
-      <div></div>
     </div>
   );
 }

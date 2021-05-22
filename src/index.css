@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 #root {
-  --light-text: #24292e;
+  --light-text: #1F2937; /* gray-800 */
   --light-bg: #fff;
   --dark-text: #f0f6fc;
   --dark-bg: #0d1117;
-  --accent: #93c5fd;
+  --accent: #C7D2FE; /* indigo 200 */
+  --hover-accent: #4F46E5; /* indigo 600 */
   --dark-hover-text: #b0b5bb;
   --dark-nav: #161b22;
   --dark-card: #161b22;
@@ -19,42 +20,34 @@
     right: 0;
     border-color: #93c5fd;
   }
-  .toggle-checkbox:checked + .toggle-label {
+  .toggle-checkbox:checked+.toggle-label {
     @apply bg-blue-400;
     background-color: #93c5fd;
   }
-
   .markdown h1 {
     @apply text-3xl;
     @apply font-bold;
   }
-
   .markdown h2 {
     @apply text-2xl;
     @apply font-bold;
   }
-
   .markdown h3 {
     @apply text-xl;
     @apply font-bold;
   }
-
   .markdown p {
     @apply text-base;
   }
-
   .markdown ol {
     @apply list-decimal;
   }
-
   .markdown ul {
     @apply list-disc;
   }
-
   .markdown a {
     @apply text-blue-500;
   }
-
   .markdown code {
     @apply bg-blue-100;
     @apply px-2;

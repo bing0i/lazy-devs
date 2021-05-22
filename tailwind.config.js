@@ -9,6 +9,7 @@ module.exports = {
         'dark-text': 'var(--dark-text)',
         'dark-bg': 'var(--dark-bg)',
         accent: 'var(--accent)',
+        'hover-accent': 'var(--hover-accent)',
         'dark-hover-text': 'var(--dark-hover-text)',
         'dark-nav': 'var(--dark-nav)',
         'dark-card': 'var(--dark-card)',
