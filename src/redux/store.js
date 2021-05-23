@@ -12,7 +12,7 @@ const reducer = {
   posts: postsReducer,
   categories: categoriesReducer,
   errors: errorsReducer,
-  login: isloginReducer,
+  isLogin: isloginReducer,
 };
 
 const preloadedState = {

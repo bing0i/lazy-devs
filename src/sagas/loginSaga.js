@@ -13,7 +13,7 @@ function apiPostLogin(user) {
 
 function apiPostLogout() {
   return axios.request({
-    method: 'post',
+    method: 'get',
     url: 'http://localhost:5000/users/logout',
   });
 }
@@ -21,7 +21,9 @@ function apiPostLogout() {
 function* postLogin(action) {
   try {
     const isSuccess = yield call(apiPostLogin, action.payload);
-    yield put(login(isSuccess.data));
+    if (isSuccess.data) {
+      yield put(login(true));
+    }
   } catch (e) {
     yield put(reportError({ message: e.message }));
   }
@@ -30,7 +32,9 @@ function* postLogin(action) {
 function* postLogout(action) {
   try {
     const isSuccess = yield call(apiPostLogout);
-    yield put(logout(isSuccess.data));
+    if (isSuccess.data) {
+      yield put(logout(false));
+    }
   } catch (e) {
     yield put(reportError({ message: e.message }));
   }

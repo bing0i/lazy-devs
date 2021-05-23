@@ -4,11 +4,11 @@ export const isloginReducer = createSlice({
   name: 'isLogin',
   initialState: false,
   reducers: {
-    login: (state) => {
-      state = true;
+    login: (state, action) => {
+      return action.payload;
     },
-    logout: (state) => {
-      state = false;
+    logout: (state, action) => {
+      return action.payload;
     },
   },
 });

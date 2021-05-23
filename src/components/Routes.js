@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import CategoryPage from './CategoryPage';
 import { useSelector } from 'react-redux';
@@ -12,17 +12,13 @@ export default function Routes() {
   const categories = useSelector((state) => state.categories);
   const posts = useSelector((state) => state.posts);
   const errors = useSelector((state) => state.errors);
+  const isLogin = useSelector((state) => state.isLogin);
 
   return (
     <BrowserRouter>
       <NavigationBar
-        categories={[
-          'home',
-          ...categories.map((category) => category.title),
-          'post',
-        ]}
+        categories={['home', ...categories.map((category) => category.title)]}
       />
-
       <Switch>
         {errors.length !== 0 ? (
           <Route exact path="/error" render={() => <ErrorPage />} />
@@ -38,11 +34,13 @@ export default function Routes() {
           />
         )}
 
+        <Route exact path="/login" component={LoginPage}>
+          {isLogin && <Redirect to="/home" />}
+        </Route>
+
         <Route exact path="/home" component={Homepage} />
 
-        <Route exact path="/login" render={() => <LoginPage />} />
-
-        <Route exact path="/post" render={() => <AddNewPostPage />} />
+        <Route exact path="/post" component={AddNewPostPage} />
 
         {categories.map((category) => {
           return (
