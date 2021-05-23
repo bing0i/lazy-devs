@@ -9,8 +9,9 @@ export default function NavigationItem(props) {
         to={'/' + href}
         onClick={handleClick}
         className={`text-sm font-bold inline-block uppercase py-4 mx-3
-          hover:text-light-text
           ${clicked ? 'text-hover-accent' : 'text-gray-500'}
+          transition duration-300 ease-in-out
+          hover:text-light-text transform hover:scale-110
         `}
       >
         {text}

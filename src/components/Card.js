@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
 export default function Card(props) {
-  const { id, title, description, category } = props;
+  const { id, title, description, category, date } = props;
   return (
     <div
-      className={`rounded-xl gap-4 grid w-96 shadow-md p-9 text-justify 
-      transition duration-500 ease-in-out
-      hover:bg-accent transform hover:-translate-y-1 hover:scale-110`}
+      className={`flex-1 m-6 rounded-xl gap-4 grid shadow-md p-9 text-justify 
+      transition duration-300 ease-in-out
+      hover:bg-accent transform hover:-translate-y-1 hover:scale-105`}
     >
       <Link
         to={'/' + category + '/' + id}
@@ -15,9 +15,7 @@ export default function Card(props) {
         {title}
       </Link>
       <p className="self-start text-sm">{description}</p>
-      <p className="self-end text-sm text-gray-500 justify-self-end">
-        {'01/01/2021'}
-      </p>
+      <p className="self-end text-sm text-gray-500 justify-self-end">{date}</p>
     </div>
   );
 }

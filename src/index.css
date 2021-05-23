@@ -7,10 +7,10 @@
   --light-bg: #fff;
   --dark-text: #f0f6fc;
   --dark-bg: #0d1117;
-  --accent: #C7D2FE;
-  /* indigo 200 */
-  --hover-accent: #4F46E5;
-  /* indigo 600 */
+  --accent: #DBEAFE;
+  /* blue 100 */
+  --hover-accent: #2563EB;
+  /* blue 700 */
   --dark-hover-text: #b0b5bb;
   --dark-nav: #161b22;
   --dark-card: #161b22;
@@ -21,11 +21,11 @@
     @apply right-0;
     @apply border-blue-400;
     right: 0;
-    border-color: #4F46E5;
+    border-color: #2563EB;
   }
   .toggle-checkbox:checked+.toggle-label {
     @apply bg-blue-400;
-    background-color: #4F46E5;
+    background-color: #2563EB;
   }
   .markdown h1 {
     @apply text-3xl;
@@ -47,6 +47,9 @@
   }
   .markdown ul {
     @apply list-disc;
+  }
+  .markdown li {
+    @apply ml-5;
   }
   .markdown a {
     @apply text-blue-500;

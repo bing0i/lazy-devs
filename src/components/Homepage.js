@@ -11,13 +11,13 @@ export default function Homepage() {
         {categories.map((category) => {
           return (
             <section
-              className={`shadow-md p-9 rounded-xl
+              className={`shadow-md rounded-xl py-9
               transition duration-500 ease-in-out
-              hover:bg-accent transform hover:-translate-y-1 hover:scale-110
+              transform hover:-translate-y-1 hover:scale-110
             `}
               key={category._id}
             >
-              <h2 className="text-sm font-bold text-hover-accent">
+              <h2 className="text-sm font-bold pl-9 text-hover-accent">
                 {category.title.replace('-', ' ').toUpperCase()}
               </h2>
               <ul className="grid grid-flow-row">
@@ -26,7 +26,9 @@ export default function Homepage() {
                   .map((post) => (
                     <li key={post._id}>
                       <Link
-                        className="block px-6 py-2 text-lg text-justify hover:text-hover-accent"
+                        className={`block py-2 text-lg text-justify px-20 hover:bg-accent hover:text-hover-accent
+                        transition duration-300 ease-in-out
+                        transform hover:scale-105`}
                         to={'/' + post.category + '/' + post._id}
                       >
                         {post.title}

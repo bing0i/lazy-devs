@@ -9,7 +9,7 @@ export default function Post(props) {
       <div></div>
       <section className="col-span-3">
         <h1 className="text-3xl font-bold text-center">{post.title}</h1>
-        <p className="text-sm italic text-center text-gray-600">
+        <p className="mb-4 text-sm italic text-center text-gray-600">
           {post.description}
         </p>
         <div

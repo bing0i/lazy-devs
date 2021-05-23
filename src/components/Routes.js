@@ -17,7 +17,7 @@ export default function Routes() {
   return (
     <BrowserRouter>
       <NavigationBar
-        categories={['home', ...categories.map((category) => category.title)]}
+        categories={[...categories.map((category) => category.title)]}
       />
       <Switch>
         {errors.length !== 0 ? (
@@ -35,10 +35,10 @@ export default function Routes() {
         )}
 
         <Route exact path="/login" component={LoginPage}>
-          {isLogin && <Redirect to="/home" />}
+          {isLogin && <Redirect to="/" />}
         </Route>
 
-        <Route exact path="/home" component={Homepage} />
+        <Route exact path="/" component={Homepage} />
 
         <Route exact path="/post" component={AddNewPostPage} />
 

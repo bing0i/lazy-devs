@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import Card from './Card';
+import { DateTime } from 'luxon';
 
 export default function CategoryPage(props) {
   const { category } = props;
@@ -7,8 +8,8 @@ export default function CategoryPage(props) {
   const categoryPosts = posts.filter((post) => post.category === category);
 
   return (
-    <div className="">
-      <section className="grid grid-flow-col justify-items-center my-9 gap-9">
+    <div>
+      <section className="flex flex-wrap">
         {categoryPosts.map((post) => {
           return (
             <Card
@@ -17,8 +18,9 @@ export default function CategoryPage(props) {
               title={post.title}
               description={post.description}
               category={post.category}
-              imagePath={''}
-              imageAlt={''}
+              date={DateTime.fromISO(post.date).toLocaleString(
+                DateTime.DATETIME_MED
+              )}
             />
           );
         })}
