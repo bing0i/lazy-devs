@@ -1,19 +1,18 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { memo } from 'react';
 import NavigationItem from './NavigationItem';
 import logo from '../assets/logo.gif';
-import { Link } from 'react-router-dom';
 
-export default function NavigationBar(props) {
-  const { categories } = props;
-  const [clickedIndex, setClickedIndex] = useState(0);
+const NavigationBar = () => {
+  const categories = useSelector((state) => state.categories);
   const isLogin = useSelector((state) => state.isLogin);
   const isLoginText = isLogin ? 'log out' : 'log in';
   const dispatch = useDispatch();
 
-  function handleClick(e, index) {
-    setClickedIndex(index);
-  }
+  const [clickedPath, setClickedPath] = useState('');
+  const onItemClick = useCallback((path) => setClickedPath(path), []);
 
   return (
     <nav className="grid grid-cols-10 px-9">
@@ -29,37 +28,51 @@ export default function NavigationBar(props) {
             <img src={logo} alt="logo" className="h-5" />
           </Link>
         </li>
-        {categories.map((category, index) => {
+        {categories.map((category) => {
           return (
             <NavigationItem
-              key={index}
-              text={category.replace('-', ' ')}
-              href={category}
-              clicked={clickedIndex === index}
-              handleClick={(e) => handleClick(e, index)}
+              key={category._id}
+              text={category.title.replace('-', ' ')}
+              path={category.title}
+              clicked={category.title === clickedPath}
+              onItemClick={onItemClick}
             />
           );
         })}
       </ul>
+
       <ul className="col-span-2 justify-self-end">
         {isLogin && (
           <NavigationItem
-            text={'new post'}
-            href={'post'}
-            clicked={clickedIndex === categories.length}
-            handleClick={(e) => handleClick(e, categories.length)}
+            text={'create post'}
+            path={'post'}
+            clicked={clickedPath === categories.length}
+            onItemClick={onItemClick}
           />
         )}
-        <NavigationItem
-          text={isLoginText}
-          href={isLogin ? '' : isLoginText.replace(' ', '')}
-          clicked={clickedIndex === categories.length + 1}
-          handleClick={(e) => {
-            handleClick(e, categories.length + 1);
-            dispatch({ type: 'logout' });
-          }}
-        />
+        <li className="inline-block">
+          <Link
+            to={`/${isLogin ? '' : isLoginText.replace(' ', '')}`}
+            onClick={() => {
+              onItemClick(`/${isLogin ? '' : isLoginText.replace(' ', '')}`);
+              isLogin && dispatch({ type: 'logout' });
+            }}
+            className={`text-sm font-bold inline-block uppercase py-4 mx-3
+              ${
+                (isLogin ? '' : isLoginText.replace(' ', '') === clickedPath)
+                  ? 'text-hover-accent'
+                  : 'text-gray-500'
+              }
+              transition duration-300 ease-in-out
+              hover:text-light-text transform hover:scale-110
+            `}
+          >
+            {isLoginText}
+          </Link>
+        </li>
       </ul>
     </nav>
   );
-}
+};
+
+export default memo(NavigationBar);

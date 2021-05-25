@@ -16,9 +16,7 @@ export default function Routes() {
 
   return (
     <BrowserRouter>
-      <NavigationBar
-        categories={[...categories.map((category) => category.title)]}
-      />
+      <NavigationBar />
       <Switch>
         {errors.length !== 0 ? (
           <Route exact path="/error" render={() => <ErrorPage />} />

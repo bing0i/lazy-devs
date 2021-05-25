@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
-export default function NavigationItem(props) {
-  const { text, href, clicked, handleClick } = props;
+const NavigationItem = ({ text, path, clicked, onItemClick }) => {
+  const handleClick = () => onItemClick(path);
 
   return (
     <li className="inline-block">
       <Link
-        to={'/' + href}
+        to={`/${path}`}
         onClick={handleClick}
         className={`text-sm font-bold inline-block uppercase py-4 mx-3
           ${clicked ? 'text-hover-accent' : 'text-gray-500'}
@@ -18,4 +19,6 @@ export default function NavigationItem(props) {
       </Link>
     </li>
   );
-}
+};
+
+export default memo(NavigationItem);
