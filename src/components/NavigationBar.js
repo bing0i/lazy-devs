@@ -9,15 +9,14 @@ import { logout } from '../sagas/actionsSaga';
 const NavigationBar = () => {
   const categories = useSelector(state => state.categories);
   const isLogin = useSelector(state => state.isLogin);
-  const isLoginText = isLogin ? 'log out' : 'log in';
   const dispatch = useDispatch();
 
   const [clickedPath, setClickedPath] = useState('');
   const onItemClick = useCallback(path => setClickedPath(path), []);
   const handleLoginLogout = useCallback(() => {
-    onItemClick(`/${isLogin ? '' : isLoginText.replace(' ', '')}`);
+    onItemClick(`${isLogin ? 'logout' : 'login'}`);
     isLogin && dispatch(logout({}));
-  }, [onItemClick, isLogin, isLoginText, dispatch]);
+  }, [onItemClick, isLogin, dispatch]);
 
   return (
     <nav className="grid grid-cols-10 px-9">
@@ -51,25 +50,21 @@ const NavigationBar = () => {
           <NavigationItem
             text={'create post'}
             path={'create-post'}
-            clicked={clickedPath === categories.length}
+            clicked={clickedPath === 'create-post'}
             onItemClick={onItemClick}
           />
         )}
         <li className="inline-block">
           <Link
-            to={`/${isLogin ? '' : isLoginText.replace(' ', '')}`}
+            to={`/${isLogin ? '' : 'login'}`}
             onClick={handleLoginLogout}
             className={`text-sm font-bold inline-block uppercase py-4 mx-3
-              ${
-                (isLogin ? '' : isLoginText.replace(' ', '') === clickedPath)
-                  ? 'text-hover-accent'
-                  : 'text-gray-500'
-              }
+              ${'login' === clickedPath ? 'text-hover-accent' : 'text-gray-500'}
               transition duration-300 ease-in-out
               hover:text-light-text transform hover:scale-110
             `}
           >
-            {isLoginText}
+            {isLogin ? 'LOG OUT' : 'LOG IN'}
           </Link>
         </li>
       </ul>
