@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import Card from './Card';
 import { DateTime } from 'luxon';
+import { memo } from 'react';
+import Card from './Card';
 
-export default function CategoryPage(props) {
-  const { category } = props;
+const CategoryPage = ({ category }) => {
   const posts = useSelector((state) => state.posts);
   const categoryPosts = posts.filter((post) => post.category === category);
 
@@ -27,4 +27,6 @@ export default function CategoryPage(props) {
       </section>
     </div>
   );
-}
+};
+
+export default memo(CategoryPage);

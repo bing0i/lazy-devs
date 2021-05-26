@@ -1,9 +1,11 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
-export default function Homepage() {
+const Homepage = () => {
   const categories = useSelector((state) => state.categories);
   const posts = useSelector((state) => state.posts);
+
   return (
     <div className="grid grid-cols-5 my-9">
       <div></div>
@@ -43,4 +45,6 @@ export default function Homepage() {
       <div></div>
     </div>
   );
-}
+};
+
+export default memo(Homepage);

@@ -1,8 +1,9 @@
 import Post from './Post';
 import PostForm from './PostForm';
-import { useState } from 'react';
+import { useState, memo } from 'react';
+import { useCallback } from 'react';
 
-export default function AddNewPostPage() {
+const AddNewPostPage = () => {
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [post, setPost] = useState({
     category: '',
@@ -10,6 +11,11 @@ export default function AddNewPostPage() {
     description: '',
     content: '',
   });
+  const handlePreviewMode = useCallback(
+    () => setIsPreviewMode(!isPreviewMode),
+    [isPreviewMode]
+  );
+
   return (
     <section>
       <div className="mt-8 text-center">
@@ -23,9 +29,7 @@ export default function AddNewPostPage() {
             name="editMode"
             id="editMode"
             defaultChecked={isPreviewMode}
-            onChange={() => {
-              setIsPreviewMode(!isPreviewMode);
-            }}
+            onChange={handlePreviewMode}
           />
           <label
             htmlFor="editMode"
@@ -41,4 +45,6 @@ export default function AddNewPostPage() {
       )}
     </section>
   );
-}
+};
+
+export default memo(AddNewPostPage);

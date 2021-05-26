@@ -6,13 +6,13 @@ import NavigationItem from './NavigationItem';
 import logo from '../assets/logo.gif';
 
 const NavigationBar = () => {
-  const categories = useSelector((state) => state.categories);
-  const isLogin = useSelector((state) => state.isLogin);
+  const categories = useSelector(state => state.categories);
+  const isLogin = useSelector(state => state.isLogin);
   const isLoginText = isLogin ? 'log out' : 'log in';
   const dispatch = useDispatch();
 
   const [clickedPath, setClickedPath] = useState('');
-  const onItemClick = useCallback((path) => setClickedPath(path), []);
+  const onItemClick = useCallback(path => setClickedPath(path), []);
 
   return (
     <nav className="grid grid-cols-10 px-9">
@@ -28,7 +28,7 @@ const NavigationBar = () => {
             <img src={logo} alt="logo" className="h-5" />
           </Link>
         </li>
-        {categories.map((category) => {
+        {categories.map(category => {
           return (
             <NavigationItem
               key={category._id}
@@ -45,7 +45,7 @@ const NavigationBar = () => {
         {isLogin && (
           <NavigationItem
             text={'create post'}
-            path={'post'}
+            path={'create-post'}
             clicked={clickedPath === categories.length}
             onItemClick={onItemClick}
           />

@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
+import { useCallback } from 'react';
 
 const NavigationItem = ({ text, path, clicked, onItemClick }) => {
-  const handleClick = () => onItemClick(path);
+  const handleClick = useCallback(() => onItemClick(path), [onItemClick, path]);
 
   return (
     <li className="inline-block">

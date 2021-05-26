@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
 
-export default function ErrorPage() {
+const ErrorPage = () => {
   const errors = useSelector((state) => state.errors);
 
   return (
@@ -13,4 +14,6 @@ export default function ErrorPage() {
       })}
     </div>
   );
-}
+};
+
+export default memo(ErrorPage);

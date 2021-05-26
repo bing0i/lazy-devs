@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
-export default function Card(props) {
-  const { id, title, description, category, date } = props;
+const Card = ({ id, title, description, category, date }) => {
   return (
     <div
       className={`flex-1 m-6 rounded-xl gap-4 grid shadow-md p-9 text-justify 
@@ -18,4 +18,6 @@ export default function Card(props) {
       <p className="self-end text-sm text-gray-500 justify-self-end">{date}</p>
     </div>
   );
-}
+};
+
+export default memo(Card);

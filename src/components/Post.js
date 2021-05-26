@@ -1,7 +1,7 @@
 import showdown from 'showdown';
+import { memo } from 'react';
 
-export default function Post(props) {
-  const { post } = props;
+const Post = ({ post }) => {
   const mdConverter = new showdown.Converter();
 
   return (
@@ -22,4 +22,6 @@ export default function Post(props) {
       <div></div>
     </div>
   );
-}
+};
+
+export default memo(Post);

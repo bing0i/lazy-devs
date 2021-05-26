@@ -1,27 +1,37 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { memo } from 'react';
+import { useCallback } from 'react';
 
-export default function PostForm(props) {
-  const { post, setPost } = props;
+const PostForm = ({ post, setPost }) => {
   const categories = useSelector((state) => state.categories);
   const dispatch = useDispatch();
 
-  function handleSubmission(e) {
-    e.preventDefault();
+  const handleSubmission = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    post.category !== ''
-      ? dispatch({ type: 'postPost', payload: post })
-      : dispatch({
-          type: 'postPost',
-          payload: { ...post, category: categories[0].title },
-        });
+      post.category !== ''
+        ? dispatch({ type: 'postPost', payload: post })
+        : dispatch({
+            type: 'postPost',
+            payload: { ...post, category: categories[0].title },
+          });
 
-    setPost({
-      category: '',
-      title: '',
-      description: '',
-      content: '',
-    });
-  }
+      setPost({
+        category: '',
+        title: '',
+        description: '',
+        content: '',
+      });
+    },
+    [post, setPost, dispatch, categories]
+  );
+  const handleInput = useCallback(
+    (e) => {
+      setPost({ ...post, [e.target.name]: e.target.value });
+    },
+    [post, setPost]
+  );
 
   return (
     <div className="grid grid-cols-5 my-8">
@@ -36,12 +46,10 @@ export default function PostForm(props) {
             className={`w-full rounded-xl focus:outline-none focus:ring 
           focus:ring-accent focus:border-accent px-3 py-2 shadow-md`}
             spellCheck="false"
-            name="categories"
-            id="categories"
+            name="category"
+            id="category"
             defaultValue={post.category}
-            onChange={(e) => {
-              setPost({ ...post, category: e.target.value });
-            }}
+            onChange={handleInput}
           >
             {categories.map((item) => {
               return (
@@ -63,9 +71,7 @@ export default function PostForm(props) {
             name="title"
             id="title"
             value={post.title}
-            onInput={(e) => {
-              setPost({ ...post, title: e.target.value });
-            }}
+            onInput={handleInput}
           />
         </label>
 
@@ -79,9 +85,7 @@ export default function PostForm(props) {
             name="description"
             id="description"
             value={post.description}
-            onInput={(e) => {
-              setPost({ ...post, description: e.target.value });
-            }}
+            onInput={handleInput}
           />
         </label>
 
@@ -94,9 +98,7 @@ export default function PostForm(props) {
             name="content"
             id="content"
             value={post.content}
-            onInput={(e) => {
-              setPost({ ...post, content: e.target.value });
-            }}
+            onInput={handleInput}
           ></textarea>
         </label>
 
@@ -110,4 +112,6 @@ export default function PostForm(props) {
       <div></div>
     </div>
   );
-}
+};
+
+export default memo(PostForm);

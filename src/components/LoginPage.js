@@ -1,20 +1,27 @@
-import { useState } from 'react';
+import { useCallback } from 'react';
+import { useState, memo } from 'react';
 import { useDispatch } from 'react-redux';
 
-export default function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const LoginPage = () => {
+  const [user, setUser] = useState({ username: '', password: '' });
 
   const dispatch = useDispatch();
 
-  function handleSubmission(e) {
-    e.preventDefault();
+  const handleSubmission = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    dispatch({ type: 'login', payload: { username, password } });
+      dispatch({ type: 'login', payload: user });
 
-    setUsername('');
-    setPassword('');
-  }
+      setUser({ username: '', password: '' });
+    },
+    [user, dispatch]
+  );
+
+  const handleInput = useCallback(
+    (e) => setUser({ ...user, [e.target.name]: e.target.value }),
+    [user]
+  );
 
   return (
     <div className="grid grid-cols-8 my-9">
@@ -32,10 +39,8 @@ export default function LoginPage() {
             type="text"
             name="username"
             id="username"
-            value={username}
-            onInput={(e) => {
-              setUsername(e.target.value);
-            }}
+            value={user.username}
+            onInput={handleInput}
           />
         </label>
 
@@ -48,10 +53,8 @@ export default function LoginPage() {
             type="password"
             name="password"
             id="password"
-            value={password}
-            onInput={(e) => {
-              setPassword(e.target.value);
-            }}
+            value={user.password}
+            onInput={handleInput}
           />
         </label>
 
@@ -65,4 +68,6 @@ export default function LoginPage() {
       <div className="col-span-3"></div>
     </div>
   );
-}
+};
+
+export default memo(LoginPage);
