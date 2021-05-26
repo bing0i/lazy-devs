@@ -5,15 +5,17 @@ import {
   fetchAllCategories,
 } from '../redux/slices/categoriesSlice';
 import { reportError } from '../redux/slices/errorsSlice';
+import { GET_ALL_CATEGORIES } from '../assets/sagaConstants';
+import { URL_CATEGORIES } from '../assets/apiConstants';
 
 function apiGetAllCategories() {
   return axios.request({
     method: 'get',
-    url: 'http://localhost:5000/api/categories',
+    url: URL_CATEGORIES,
   });
 }
 
-function* getAllCategories(action) {
+function* getAllCategories() {
   try {
     const categories = yield call(apiGetAllCategories);
     yield put(fetchAllCategories(categories.data));
@@ -23,7 +25,7 @@ function* getAllCategories(action) {
 }
 
 function* watchGetAllCategories() {
-  yield takeEvery('getAllCategories', getAllCategories);
+  yield takeEvery(GET_ALL_CATEGORIES, getAllCategories);
 }
 
 const categoriesSagas = [watchGetAllCategories];

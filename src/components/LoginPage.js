@@ -1,25 +1,23 @@
 import { useCallback } from 'react';
 import { useState, memo } from 'react';
 import { useDispatch } from 'react-redux';
+import { login } from '../sagas/actionsSaga';
 
 const LoginPage = () => {
-  const [user, setUser] = useState({ username: '', password: '' });
-
   const dispatch = useDispatch();
-
+  const [user, setUser] = useState({ username: '', password: '' });
   const handleSubmission = useCallback(
-    (e) => {
+    e => {
       e.preventDefault();
 
-      dispatch({ type: 'login', payload: user });
+      dispatch(login(user));
 
       setUser({ username: '', password: '' });
     },
     [user, dispatch]
   );
-
   const handleInput = useCallback(
-    (e) => setUser({ ...user, [e.target.name]: e.target.value }),
+    e => setUser({ ...user, [e.target.name]: e.target.value }),
     [user]
   );
 

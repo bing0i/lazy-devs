@@ -20,7 +20,13 @@ const Routes = () => {
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="mt-16 text-sm font-bold text-center animate-pulse">
+            LOADING...
+          </div>
+        }
+      >
         <NavigationBar />
 
         <Switch>

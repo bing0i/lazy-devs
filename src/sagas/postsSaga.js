@@ -2,16 +2,18 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import { addNewPost, fetchAllPosts } from '../redux/slices/postsSlice';
 import { reportError } from '../redux/slices/errorsSlice';
+import { URL_POSTS } from '../assets/apiConstants';
+import { GET_ALL_POSTS, PUSH_POST } from '../assets/sagaConstants';
 
 function apiPostPost(post) {
   return axios.request({
     method: 'post',
-    url: 'http://localhost:5000/api/posts',
+    url: URL_POSTS,
     data: post,
   });
 }
 
-function* postPost(action) {
+function* pushPost(action) {
   try {
     const post = yield call(apiPostPost, action.payload);
     yield put(addNewPost(post.data));
@@ -20,18 +22,18 @@ function* postPost(action) {
   }
 }
 
-function* watchPostPost() {
-  yield takeEvery('postPost', postPost);
+function* watchPushPost() {
+  yield takeEvery(PUSH_POST, pushPost);
 }
 
 function apiGetAllPosts() {
   return axios.request({
     method: 'get',
-    url: 'http://localhost:5000/api/posts',
+    url: URL_POSTS,
   });
 }
 
-function* getAllPosts(action) {
+function* getAllPosts() {
   try {
     const posts = yield call(apiGetAllPosts);
     yield put(fetchAllPosts(posts.data));
@@ -41,9 +43,9 @@ function* getAllPosts(action) {
 }
 
 function* watchGetAllPosts() {
-  yield takeEvery('getAllPosts', getAllPosts);
+  yield takeEvery(GET_ALL_POSTS, getAllPosts);
 }
 
-const postsSagas = [watchPostPost, watchGetAllPosts];
+const postsSagas = [watchPushPost, watchGetAllPosts];
 
 export default postsSagas;

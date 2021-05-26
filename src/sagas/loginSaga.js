@@ -2,11 +2,13 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import { login, logout } from '../redux/slices/loginSlice';
 import { reportError } from '../redux/slices/errorsSlice';
+import { LOGIN, LOGOUT } from '../assets/sagaConstants';
+import { URL_LOGIN, URL_LOGOUT } from '../assets/apiConstants';
 
 function apiPostLogin(user) {
   return axios.request({
     method: 'post',
-    url: 'http://localhost:5000/users/login',
+    url: URL_LOGIN,
     data: user,
   });
 }
@@ -14,7 +16,7 @@ function apiPostLogin(user) {
 function apiPostLogout() {
   return axios.request({
     method: 'get',
-    url: 'http://localhost:5000/users/logout',
+    url: URL_LOGOUT,
   });
 }
 
@@ -29,7 +31,7 @@ function* postLogin(action) {
   }
 }
 
-function* postLogout(action) {
+function* postLogout() {
   try {
     const isSuccess = yield call(apiPostLogout);
     if (isSuccess.data) {
@@ -41,11 +43,11 @@ function* postLogout(action) {
 }
 
 function* watchPostLogin() {
-  yield takeEvery('login', postLogin);
+  yield takeEvery(LOGIN, postLogin);
 }
 
 function* watchPostLogout() {
-  yield takeEvery('logout', postLogout);
+  yield takeEvery(LOGOUT, postLogout);
 }
 
 const loginSagas = [watchPostLogin, watchPostLogout];

@@ -1,21 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { memo } from 'react';
 import { useCallback } from 'react';
+import { pushPost } from '../sagas/actionsSaga';
 
 const PostForm = ({ post, setPost }) => {
-  const categories = useSelector((state) => state.categories);
+  const categories = useSelector(state => state.categories);
   const dispatch = useDispatch();
 
   const handleSubmission = useCallback(
-    (e) => {
+    e => {
       e.preventDefault();
 
       post.category !== ''
-        ? dispatch({ type: 'postPost', payload: post })
-        : dispatch({
-            type: 'postPost',
-            payload: { ...post, category: categories[0].title },
-          });
+        ? dispatch(pushPost(post))
+        : dispatch(pushPost({ ...post, category: categories[0].title }));
 
       setPost({
         category: '',
@@ -27,7 +25,7 @@ const PostForm = ({ post, setPost }) => {
     [post, setPost, dispatch, categories]
   );
   const handleInput = useCallback(
-    (e) => {
+    e => {
       setPost({ ...post, [e.target.name]: e.target.value });
     },
     [post, setPost]
@@ -51,7 +49,7 @@ const PostForm = ({ post, setPost }) => {
             defaultValue={post.category}
             onChange={handleInput}
           >
-            {categories.map((item) => {
+            {categories.map(item => {
               return (
                 <option key={item._id} value={item.title}>
                   {item.title.toUpperCase().replace('-', ' ')}

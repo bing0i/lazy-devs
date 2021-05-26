@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { memo } from 'react';
 import NavigationItem from './NavigationItem';
 import logo from '../assets/logo.gif';
+import { logout } from '../sagas/actionsSaga';
 
 const NavigationBar = () => {
   const categories = useSelector(state => state.categories);
@@ -13,6 +14,10 @@ const NavigationBar = () => {
 
   const [clickedPath, setClickedPath] = useState('');
   const onItemClick = useCallback(path => setClickedPath(path), []);
+  const handleLoginLogout = useCallback(() => {
+    onItemClick(`/${isLogin ? '' : isLoginText.replace(' ', '')}`);
+    isLogin && dispatch(logout({}));
+  }, [onItemClick, isLogin, isLoginText, dispatch]);
 
   return (
     <nav className="grid grid-cols-10 px-9">
@@ -53,10 +58,7 @@ const NavigationBar = () => {
         <li className="inline-block">
           <Link
             to={`/${isLogin ? '' : isLoginText.replace(' ', '')}`}
-            onClick={() => {
-              onItemClick(`/${isLogin ? '' : isLoginText.replace(' ', '')}`);
-              isLogin && dispatch({ type: 'logout' });
-            }}
+            onClick={handleLoginLogout}
             className={`text-sm font-bold inline-block uppercase py-4 mx-3
               ${
                 (isLogin ? '' : isLoginText.replace(' ', '') === clickedPath)
