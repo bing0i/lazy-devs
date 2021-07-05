@@ -2,13 +2,13 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import { addNewPost, fetchAllPosts } from '../redux/slices/postsSlice';
 import { reportError } from '../redux/slices/errorsSlice';
-import { URL_POSTS } from '../assets/apiConstants';
+import { API } from '../assets/urlConstants';
 import { GET_ALL_POSTS, PUSH_POST } from '../assets/sagaConstants';
 
 function apiPostPost(post) {
   return axios.request({
     method: 'post',
-    url: URL_POSTS,
+    url: API.URL_POSTS,
     data: post,
   });
 }
@@ -29,7 +29,7 @@ function* watchPushPost() {
 function apiGetAllPosts() {
   return axios.request({
     method: 'get',
-    url: URL_POSTS,
+    url: API.URL_POSTS,
   });
 }
 

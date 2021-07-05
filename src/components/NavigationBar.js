@@ -5,14 +5,15 @@ import { memo } from 'react';
 import NavigationItem from './NavigationItem';
 import logo from '../assets/logo.gif';
 import { logout } from '../sagas/actionsSaga';
+import { FE_DOMAIN } from '../assets/urlConstants';
 
 const NavigationBar = () => {
-  const categories = useSelector(state => state.categories);
-  const isLogin = useSelector(state => state.isLogin);
+  const categories = useSelector((state) => state.categories);
+  const isLogin = useSelector((state) => state.isLogin);
   const dispatch = useDispatch();
 
   const [clickedPath, setClickedPath] = useState('');
-  const onItemClick = useCallback(path => setClickedPath(path), []);
+  const onItemClick = useCallback((path) => setClickedPath(path), []);
   const handleLoginLogout = useCallback(() => {
     onItemClick(`${isLogin ? 'logout' : 'login'}`);
     isLogin && dispatch(logout({}));
@@ -23,7 +24,7 @@ const NavigationBar = () => {
       <ul className="col-span-8">
         <li className="inline-block">
           <Link
-            to={'/'}
+            to={`${FE_DOMAIN}/`}
             className={`mx-3 inline-block align-middle py-4
             transition duration-300 ease-in-out
             hover:text-light-text transform hover:scale-150
@@ -32,7 +33,7 @@ const NavigationBar = () => {
             <img src={logo} alt="logo" className="h-5" />
           </Link>
         </li>
-        {categories.map(category => {
+        {categories.map((category) => {
           return (
             <NavigationItem
               key={category._id}
@@ -56,7 +57,7 @@ const NavigationBar = () => {
         )}
         <li className="inline-block">
           <Link
-            to={`/${isLogin ? '' : 'login'}`}
+            to={`${FE_DOMAIN}/${isLogin ? '' : 'login'}`}
             onClick={handleLoginLogout}
             className={`text-sm font-bold inline-block uppercase py-4 mx-3
               ${'login' === clickedPath ? 'text-hover-accent' : 'text-gray-500'}

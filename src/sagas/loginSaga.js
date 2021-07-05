@@ -3,12 +3,12 @@ import axios from 'axios';
 import { login, logout } from '../redux/slices/loginSlice';
 import { reportError } from '../redux/slices/errorsSlice';
 import { LOGIN, LOGOUT } from '../assets/sagaConstants';
-import { URL_LOGIN, URL_LOGOUT } from '../assets/apiConstants';
+import { API } from '../assets/urlConstants';
 
 function apiPostLogin(user) {
   return axios.request({
     method: 'post',
-    url: URL_LOGIN,
+    url: API.URL_LOGIN,
     data: user,
   });
 }
@@ -16,7 +16,7 @@ function apiPostLogin(user) {
 function apiPostLogout() {
   return axios.request({
     method: 'get',
-    url: URL_LOGOUT,
+    url: API.URL_LOGOUT,
   });
 }
 

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
+import { FE_DOMAIN } from '../assets/urlConstants';
 
 const Homepage = () => {
   const categories = useSelector((state) => state.categories);
@@ -31,7 +32,7 @@ const Homepage = () => {
                         className={`block py-2 text-lg text-justify px-20 hover:bg-accent hover:text-hover-accent
                         transition duration-300 ease-in-out
                         transform hover:scale-105`}
-                        to={'/' + post.category + '/' + post._id}
+                        to={`${FE_DOMAIN}/${post.category}/${post._id}`}
                       >
                         {post.title}
                       </Link>

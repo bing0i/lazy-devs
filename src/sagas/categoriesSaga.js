@@ -6,12 +6,12 @@ import {
 } from '../redux/slices/categoriesSlice';
 import { reportError } from '../redux/slices/errorsSlice';
 import { GET_ALL_CATEGORIES } from '../assets/sagaConstants';
-import { URL_CATEGORIES } from '../assets/apiConstants';
+import { API } from '../assets/urlConstants';
 
 function apiGetAllCategories() {
   return axios.request({
     method: 'get',
-    url: URL_CATEGORIES,
+    url: API.URL_CATEGORIES,
   });
 }
 

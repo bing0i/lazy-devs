@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
+import { FE_DOMAIN } from '../assets/urlConstants';
 
 const Card = ({ id, title, description, category, date }) => {
   return (
@@ -9,7 +10,7 @@ const Card = ({ id, title, description, category, date }) => {
       hover:bg-accent transform hover:-translate-y-1 hover:scale-105`}
     >
       <Link
-        to={'/' + category + '/' + id}
+        to={`${FE_DOMAIN}/${category}/${id}`}
         className="self-end text-xl font-bold transform text-light-text hover:text-hover-accent"
       >
         {title}
