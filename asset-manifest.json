@@ -3,8 +3,8 @@
     "static/js/0.2842078a.chunk.js": "/lazy-devs-frontend/static/js/0.2842078a.chunk.js",
     "static/js/0.2842078a.chunk.js.map": "/lazy-devs-frontend/static/js/0.2842078a.chunk.js.map",
     "main.css": "/lazy-devs-frontend/static/css/main.d75e31e0.chunk.css",
-    "main.js": "/lazy-devs-frontend/static/js/main.1718b8e3.chunk.js",
-    "main.js.map": "/lazy-devs-frontend/static/js/main.1718b8e3.chunk.js.map",
+    "main.js": "/lazy-devs-frontend/static/js/main.7ddeeae2.chunk.js",
+    "main.js.map": "/lazy-devs-frontend/static/js/main.7ddeeae2.chunk.js.map",
     "runtime-main.js": "/lazy-devs-frontend/static/js/runtime-main.1876872d.js",
     "runtime-main.js.map": "/lazy-devs-frontend/static/js/runtime-main.1876872d.js.map",
     "static/js/3.eb238c43.chunk.js": "/lazy-devs-frontend/static/js/3.eb238c43.chunk.js",
@@ -30,6 +30,6 @@
     "static/js/runtime-main.1876872d.js",
     "static/js/3.eb238c43.chunk.js",
     "static/css/main.d75e31e0.chunk.css",
-    "static/js/main.1718b8e3.chunk.js"
+    "static/js/main.7ddeeae2.chunk.js"
   ]
 }
